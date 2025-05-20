@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Известные личности</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        /* Первый хидер с меню */
+        .header-menu {
+            background-color: #1a3e2f;
+            color: white;
+            padding: 35px 0;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Выпадающие меню */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .dropbtn:hover {
+            background-color: #2a5d46;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #e0e0e0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Центральная ссылка */
+        .center-link {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .center-link:hover {
+            background-color: #2a5d46;
+        }
+
+        /* Второй хидер */
+        .header-main {
+            background: linear-gradient(to top, #e9d1af, #805c2e);
+            color: white;
+            text-align: center;
+            padding: 45px 0;
+        }
+
+        .header-main h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .header-main p {
+            margin: 5px 0 0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Навигация */
+        .navigation {
+            background: #f8f9fa;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navigation ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .navigation li {
+            padding: 12px 0;
+        }
+
+        .navigation a {
+            color: #555;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .navigation a:hover {
+            background: #e9d1af;
+            color: white;
+        }
+
+        /* Карточки личностей */
+        .person-section {
+            margin: 25px 0;
+        }
+
+        .person-section h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .person-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .person-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .person-card h3 {
+            margin: 15px 15px 5px;
+            font-size: 1.2rem;
+        }
+
+        .person-card p {
+            margin: 0 15px 15px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .person-card a {
+            display: block;
+            margin: 0 15px 15px;
+            color: #6e48aa;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Подвал */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+        }
+
+        .social-links img {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Первый хидер с меню -->
+    <header class="header-menu">
+        <div class="header-container">
+            <!-- Левое меню: Научный -->
+            <div class="dropdown">
+                <button class="dropbtn">Научный</button>
+                <div class="dropdown-content">
+                    <a href="#">Карта</a>
+                    <a href="#">Язык</a>
+                    <a href="#">Манас</a>
+                    <a href="lichnost.html">Личности</a>
+                    <a href="#">О нас</a>
+                </div>
+            </div>
+
+            <!-- Центральная ссылка -->
+            <a href="yourt.html" class="center-link">Строение юрты</a>
+
+            <!-- Правое меню: Духовный -->
+            <div class="dropdown">
+                <button class="dropbtn">Духовный</button>
+                <div class="dropdown-content">
+                    <a href="#">Традиции</a>
+                    <a href="#">Литература</a>
+                    <a href="instrumrnt.html">Музыка</a>
+                    <a href="#">ИЗО</a>
+                    <a href="#">Киноматограф</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Второй хидер -->
+    <header class="header-main">
+        <div class="container">
+            <h1>Известные личности</h1>
+            <p>Вдохновляющие истории великих людей</p>
+        </div>
+    </header>
+
+    <!-- Навигация (горизонтальное меню) -->
+    <nav class="navigation">
+        <div class="container">
+            <ul>
+                <li><a href="#writers">Писатели</a></li>
+                <li><a href="#akyns">Акыны и композиторы</a></li>
+                <li><a href="#actors">Актеры и актрисы</a></li>
+                <li><a href="#OperaSinger">Певцы и композиторы</a></li>
+                <li><a href="#balets">Деятели балеты</a></li>
+                <li><a href="#scientists">Учёные и Исследователи</a></li>
+                <li><a href="#GossPersonality"> Исторические Личности</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="main-content">
+        <div class="container">
+
+ <!-- Секция 1: Классики Литературы и Писатели: -->
+ <section id="writers" class="person-section">
+    <h2>Писатели:</h2>
+    <div class="person-card">
+        <img src="images/Касым Тыныстанов.jpg" alt="Касым Тыныстанов">
+        <h3 style="text-align: center;">Касым Тыныстанов</h3>
+        <p>Дата рождения:  10 сентября 1901 года</p>
+        <p>Место рождения: Село Чырпыкты, Иссык-Кульская область, Российская империя</p>
+        <p>Дата смерти: 7 ноября 1938 года</p>
+        <p>Биография: Выдающийся кыргызский просветитель, языковед, литературовед, драматург, один из основоположников кыргызской письменности и национальной литературы. Активный участник культурного строительства в Кыргызстане в 1920-1930-х годах. Репрессирован в годы сталинских репрессий.</p>
+        <a href="https://ru.wikipedia.org/wiki/%D0%A2%D1%8B%D0%BD%D1%8B%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2,_%D0%9A%D0%B0%D1%81%D1%8B%D0%BC">Подробнее →</a>
+    </div>
+    <!-- Ещё карточки -->
+    <div class="person-card">
+        <img src="images/Алыкул Осмонов.jpg" alt="Алыкул Осмонов">
+        <h3 style="text-align: center;">Алыкул Осмонов</h3>
+        <p>Дата рождения:   21 марта 1915</p>
+        <p>Место рождения: село Каптал-Арык, Чуйская область</p>
+        <p>Дата смерти:  12 декабря 1950</p>
+        <p>Биография:  Классик кыргызской литературы, великий поэт, драматург и переводчик. Автор глубоко лирических, философских и патриотических произведений, оказавших огромное влияние на формирование современного кыргызского литературного языка.</p>
+        <a href="https://ky.wikipedia.org/wiki/%D0%90%D0%BB%D1%8B%D0%BA%D1%83%D0%BB_%D0%9E%D1%81%D0%BC%D0%BE%D0%BD%D0%BE%D0%B2">Подробнее →</a>
+    </div>
+    <div class="person-card">
+        <img src="images/Чингиз Айтматов.jpg" alt="Чингиз Торекулович Айтматов">
+        <h3 style="text-align: center;">Чингиз Торекулович Айтматов</h3>
+        <p>Дата рождения:   12 декабря 1928</p>
+        <p>Место рождения: село Шекер, Таласская область, Киргизская АССР, СССР</p>
+        <p>Дата смерти:  10 июня 2008</p>
+        <p>Биография: Всемирно известный кыргызский и советский писатель и дипломат. Один из самых читаемых авторов XX века, чьи произведения переведены на множество языков. В его творчестве глубоко отражены общечеловеческие ценности, проблемы нравственности и взаимоотношений человека с природой.</p>
+        <a href="https://ru.wikipedia.org/wiki/%D0%90%D0%B9%D1%82%D0%BC%D0%B0%D1%82%D0%BE%D0%B2,_%D0%A7%D0%B8%D0%BD%D0%B3%D0%B8%D0%B7_%D0%A2%D0%BE%D1%80%D0%B5%D0%BA%D1%83%D0%BB%D0%BE%D0%B2%D0%B8%D1%87">Подробнее →</a>
+    </div>
+    <div class="person-card">
+        <img src="images/Жусуп Баласагын.jpg" alt="Жусуп Баласагын">
+        <h3 style="text-align: center;">Жусуп Баласагын</h3>
+        <p>Дата рождения:    ок. 1015-1016 (точная дата неизвестна)</p>
+        <p>Место рождения:  город Баласагун (предположительно на территории современного Кыргызстана или Казахстана)</p>
+        <p>Дата смерти:  после 1070 (точная дата неизвестна)</p>
+        <p>Биография:Выдающийся средневековый тюркский мыслитель, поэт и государственный деятель. Автор знаменитого произведения "Кутадгу Билиг" ("Благодатное знание"), ценнейшего памятника тюркской письменности, посвящённого вопросам государственного управления, этики и философии.</p>
+        <a href="https://ky.wikipedia.org/wiki/%D0%96%D1%83%D1%81%D1%83%D0%BF_%D0%91%D0%B0%D0%BB%D0%B0%D1%81%D0%B0%D0%B3%D1%8B%D0%BD">Подробнее →</a>
+    </div>
+    <div class="person-card">
+        <img src="images/Мукай Элебаев.jpg" alt="Мукай Элебаев">
+        <h3 style="text-align: center;">Мукай Элебаев</h3>
+        <p>Дата рождения:    15 марта 1905</p>
+        <p>Место рождения:  село Чон-Таш, Чуйская область, Семиреченская губерния, Российская империя</p>
+        <p>Дата смерти:  13 ноября 1943</p>
+        <p>Биография:Кыргызский поэт, прозаик, драматург, один из основоположников кыргызской советской литературы. Его произведения посвящены становлению советской власти и преобразованиям в кыргызском обществе. Погиб на фронте во время Великой Отечественной войны.</p>
+        <a href="https://ru.wikipedia.org/wiki/%D0%AD%D0%BB%D0%B5%D0%B1%D0%B0%D0%B5%D0%B2,_%D0%9C%D1%83%D0%BA%D0%B0%D0%B9">Подробнее →</a>
+    </div>
+</section>
+
+
+ <!-- Секция 2: Акын-Импровизаторы и Сказители (Манасчи)-->
+ <section id="akyns" class="person-section">
+    <h2>Акын-Импровизаторы и Сказители</h2>
+    <div class="person-card">
+        <img src="images/Саякбай Каралаев.jpg" alt="Саякбай Каралаев">
+        <h3 style="text-align: center;">Саякбай Каралаев</h3>
+        <p>Дата рождения: 2 февраля 1894</p>
+        <p>Место рождения:  село Ак-Олон, Иссык-Кульская область, Семиреченская губерния, Российская империя</p>
+        <p>Дата смерти:   7 мая 1971</p>
+        <p>Биография: Великий кыргызский манасчи, Народный артист Киргизской ССР. Признанный сказитель эпоса "Манас", обладавший феноменальной памятью и артистизмом. Его вариант "Манаса" считается одним из наиболее полных и канонических.</p>
+        <a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D1%80%D0%B0%D0%BB%D0%B0%D0%B5%D0%B2,_%D0%A1%D0%B0%D1%8F%D0%BA%D0%B1%D0%B0%D0%B9">Подробнее →</a>
+    </div>
+    <!-- Ещё карточки -->
+    <div class="person-card">
+        <img src="images/Женижок Кокоев.jpg" alt="Женижок Кокоев">
+        <h3 style="text-align: center;">Женижок Кокоев</h3>
+        <p>Дата рождения: 1860 (точная дата неизвестна)</p>
+        <p>Место рождения:  село Кум-Добо, Нарынская область, Российская империя</p>
+        <p>Дата смерти:  1918 (точная дата неизвестна)</p>
+        <p>Биография:  Известный кыргызский акын-импровизатор, мыслитель, один из ярчайших представителей устной народной поэзии. Его творчество отличалось остротой ума, сатирическим складом и глубоким пониманием жизни простого народа.</p>
+        <a href="https://sputnik.kg/20150922/zhe-izhok-omur-bayany-1018546872.html">Подробнее →</a>
+    </div>
+    <div class="person-card">
+        <img src="images/Токтогул Сатылганов.jpg" alt="Токтогул Сатылганов">
+        <h3 style="text-align: center;">Токтогул Сатылганов</h3>
+        <p>Дата рождения: 25 октября 1864</p>
+        <p>Место рождения:   село Кушчу-Суу (ныне село Токтогул), Джалал-Абадская область, Кокандское ханство</p>
+        <p>Дата смерти:  17 февраля 1933</p>
+        <p>Биография: Великий кыргызский акын-импровизатор, комузист, мыслитель. В его творчестве переплетались народные традиции с новыми веяниями, отражая чаяния и борьбу народа за справедливость. Один из самых почитаемых деятелей кыргызской культуры.</p>
+        <a href="https://ky.wikipedia.org/wiki/%D0%A2%D0%BE%D0%BA%D1%82%D0%BE%D0%B3%D1%83%D0%BB_%D0%A1%D0%B0%D1%82%D1%8B%D0%BB%D0%B3%D0%B0%D0%BD%D0%BE%D0%B2">Подробнее →</a>
+    </div>
+    <div class="person-card">
+        <img src="images/Тоголок Молдо.jpg" alt="Тоголок Молдо">
+        <h3 style="text-align: center;">Тоголок Молдо</h3>
+        <p>Дата рождения: 10 июня 1860</p>
+        <p>Место рождения:  село Кум-Арык, Чуйская область, Семиреченская губерния, Российская империя</p>
+        <p>Дата смерти:  4 января 1942</p>
+        <p>Биография: Выдающийся кыргызский акын-импровизатор, поэт, просветитель. Его произведения, полные мудрости и народной философии, оказали значительное влияние на развитие кыргызской литературы.</p>
+        <a href="https://ru.wikipedia.org/wiki/%D0%A2%D0%BE%D0%B3%D0%BE%D0%BB%D0%BE%D0%BA_%D0%9C%D0%BE%D0%BB%D0%B4%D0%BE">Подробнее →</a>
+    </div>
+    <div class="person-card">
+        <img src="images/Жусуп Мамай.jpg" alt="Жусуп Мамай">
+        <h3 style="text-align: center;">Жусуп Мамай</h3>
+        <p>Дата рождения: 1918 (точная дата неизвестна)</p>
+        <p>Место рождения:  Синьцзян, Китайская Республика (ныне КНР)</p>
+        <p>Дата смерти:  30 мая 2014</p>
+        <p>Биография:  Выдающийся кыргызский манасчи, Народный артист Кыргызстана, хранитель и продолжатель традиций сказительства эпоса "Манас". Его уникальный вариант эпоса, записанный в Китае, является бесценным культурным достоянием.</p>
+        <a href="https://ky.wikipedia.org/wiki/%D0%96%D2%AF%D1%81%D2%AF%D0%BF_%D0%9C%D0%B0%D0%BC%D0%B0%D0%B9">Подробнее →</a>
+    </div>
+    <div class="person-card">
+        <img src="images/Молдо Кылыч.jpg" alt="Молдо Кылыч">
+        <h3 style="text-align: center;">Молдо Кылыч</h3>
+        <p>Дата рождения: 1867 (точная дата неизвестна)</p>
+        <p>Место рождения:  село Ак-Чий, Нарынская область, Российская империя</p>
+        <p>Дата смерти:  1917 (точная дата неизвестна)</p>
+        <p>Биография: Кыргызский акын-импровизатор, поэт-мыслитель. Известен своими эпическими поэмами, отражающими жизнь и быт кыргызов конца XIX – начала XX века, а также просветительскими идеями.</p>
+        <a href="https://ky.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BB%D0%B4%D0%BE_%D0%9A%D1%8B%D0%BB%D1%8B%D1%87">Подробнее →</a>
+    </div>
+</section>

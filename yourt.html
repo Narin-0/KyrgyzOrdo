@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Юрта: Традиционное жилище и культурные аспекты</title>
+    <style>
+        /* --- Общие сбросы и базовые стили --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Удобная модель box-model */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333; /* Основной цвет текста */
+            line-height: 1.6; /* Улучшает читабельность текста */
+        }
+
+        /* --- Общий контейнер для основного контента --- */
+        .page-container { /* Переименовал, чтобы не конфликтовать с .container в хедере */
+            max-width: 960px; /* Ограничиваем ширину основного контента */
+            margin: 20px auto; /* Центрируем и добавляем отступ */
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Заголовки --- */
+        h1, h2, h3 {
+            color: #557f50; /* Зеленоватый цвет заголовков */
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        /* --- Стили для списков --- */
+        ol, ul {
+            padding-left: 25px; /* Отступ слева для маркеров/номеров */
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* --- Хидер --- */
+        .header {
+    background-color: #1a3e2f;
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* Сам header уже занимает 100% ширины по умолчанию */
+}
+
+/* Стили для внутреннего контейнера хедера - ИЗМЕНЕНИЯ ЗДЕСЬ */
+.header-inner-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* max-width: 1200px;  <-- УБИРАЕМ это ограничение, если хотим, чтобы содержимое тоже было на всю ширину */
+    margin: 0 auto; /* Все еще центрирует, если есть какой-то padding */
+    padding: 0 20px; /* Отступы по бокам, чтобы содержимое не прилипало к краям экрана */
+    width: 100%; /* Убедимся, что он занимает всю доступную ширину родителя (header) */
+}
+
+        /* Выпадающие меню */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .dropbtn:hover, .dropbtn:focus { /* Добавил :focus для доступности */
+            background-color: #2a5d46;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            left: 0; /* Выравнивание выпадающего меню по левому краю кнопки */
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #e0e0e0;
+        }
+
+        .dropdown:hover .dropdown-content,
+        .dropdown:focus-within .dropdown-content { /* focus-within для доступности с клавиатуры */
+            display: block;
+        }
+
+        /* Центральная ссылка */
+        .center-link {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .center-link:hover {
+            background-color: #2a5d46;
+        }
+
+        /* --- Основное изображение страницы --- */
+        .main-yurt-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 30px auto; /* Центрируем и добавляем большой отступ снизу */
+            border-radius: 8px; /* Скругляем углы */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Добавляем тень */
+        }
+
+        /* --- Секции контента (общие стили) --- */
+        section {
+            padding: 30px 0; /* Внутренние отступы секции */
+            margin-bottom: 30px; /* Отступ между секциями */
+            /* background-color: white; (перенесено в .page-container) */
+            /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); (перенесено в .page-container) */
+            text-align: center; /* Центрируем заголовки и видео */
+        }
+
+        /* --- Стили для под-разделов "Строение юрты" --- */
+        .structure-part {
+            margin-bottom: 25px; /* Отступ между частями строения */
+            padding: 20px;
+            border: 1px solid #e0e0e0; /* Более тонкая рамка */
+            background-color: #fcfcfc; /* Более светлый фон */
+            border-radius: 5px;
+            text-align: left; /* Текст внутри выравниваем по левому краю */
+        }
+
+        .structure-part h3 {
+            color: #70a46a;
+            margin-top: 0; /* Убираем верхний отступ у h3 внутри structure-part */
+            margin-bottom: 15px;
+            text-align: center; /* Центрируем заголовки частей */
+        }
+
+        /* --- Блоки с фоновыми изображениями (placeholders) --- */
+        .image-placeholder {
+            width: 100%; /* Занимает всю ширину родительского .structure-part */
+            height: 250px; /* Увеличил высоту для лучшего просмотра изображений */
+            background-color: #f0f0f0;
+            margin-bottom: 15px; /* Отступ снизу */
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ccc;
+            font-size: 0.8em;
+            overflow: hidden; /* Важно для background-size: cover/contain */
+            position: relative; /* Для правильного позиционирования background-image */
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.05); /* Легкая внутренняя тень */
+        }
+
+        /* Конкретные изображения для placeholder'ов */
+        #karkas {
+            background-image: url(images/struc_of_ypurt.png);
+            background-size: contain; /* Чтобы изображение полностью помещалось */
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+        #cover {
+            background-image: url(images/cover.jpg);
+            background-size: cover; /* Чтобы изображение полностью покрывало контейнер */
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+        #inter {
+            background-image: url(images/inter.jpg);
+            background-size: cover; /* Чтобы изображение полностью покрывало контейнер */
+            background-repeat: no-repeat;
+            background-position: center center;
+            border: 0.5px solid #ffeedd; /* Улучшил цвет рамки */
+        }
+
+        /* --- Адаптивный видео-контейнер --- */
+        .video-container {
+            position: relative;
+            width: 90%; /* Ширина контейнера (адаптивная) */
+            max-width: 800px; /* Максимальная ширина, чтобы видео не было слишком огромным */
+            margin: 0 auto; /* Центрируем контейнер */
+            padding-bottom: 56.25%; /* Соотношение сторон 16:9 для YouTube (высота 9 / ширина 16) */
+            height: 0; /* Высота 0, чтобы padding-bottom контролировал размер */
+            overflow: hidden;
+            background-color: #000; /* Черный фон для видео */
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Тень для видео */
+            margin-top: 20px; /* Отступ сверху от заголовка секции */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- Футер --- */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #1a3e2f; /* Цвет футера как у хедера */
+            color: #e0e0e0;
+            font-size: 0.9em;
+            margin-top: 40px; /* Добавляем больше отступа от контента */
+            border-top: 1px solid rgba(255,255,255,0.1); /* Легкая верхняя граница */
+        }
+
+        /* --- Медиа-запросы для адаптивного дизайна --- */
+        @media (max-width: 768px) {
+        .header-inner-container {
+         /* Элементы хедера в столбец */
+        padding: 0 15px;
+        }
+        .dropbtn {
+        width: 100%;
+        margin-bottom: 10px;
+        }
+        .center-link {
+        margin-bottom: 15px;
+        }
+    /* ... остальные стили для мобильных ... */
+        }
+
+            .page-container {
+                padding: 15px; /* Уменьшаем padding на мобильных */
+                margin: 10px auto; /* Уменьшаем внешний отступ */
+            }
+            h1, h2, h3 {
+                font-size: 1.8em; /* Уменьшаем размер заголовков */
+            }
+            h3 {
+                font-size: 1.4em;
+            }
+            .image-placeholder {
+                height: 200px; /* Немного уменьшаем высоту изображений-заглушек */
+            }
+            .video-container {
+                width: 95%; /* Видео шире на мобильных */
+                padding-bottom: 60%; /* Может потребоваться небольшое изменение пропорций для мобильных */
+            }
+            .structure-part {
+                padding: 15px;
+            }
+            ol, ul {
+                padding-left: 20px;
+            }
+        
+
+        @media (max-width: 480px) { /* Точка перелома для очень маленьких мобильных */
+            h1, h2, h3 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.2em;
+            }
+            .image-placeholder {
+                height: 180px;
+            }
+            .video-container {
+                padding-bottom: 65%; /* Ещё немного увеличиваем относительную высоту */
+            }
+        }
+
+        /* Медиа-запрос для ПК: float'ы для изображений */
+        @media (min-width: 769px) {
+            .structure-part {
+                display: flow-root; /* Используем flow-root для очистки float */
+            }
+            .structure-part .image-placeholder {
+                width: 280px; /* Конкретная ширина для изображений на ПК */
+                height: 200px; /* Конкретная высота для изображений на ПК */
+                float: right; /* Размещаем фото справа от текста */
+                margin: 0 0 10px 25px; /* Отступы: верх, право, низ, лево */
+            }
+            /* Если нужно выровнять по левому краю для некоторых изображений */
+            /* #karkas { float: left; margin: 0 25px 10px 0; } */
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner-container">
+            <div class="dropdown">
+                <button class="dropbtn">Научный</button>
+                <div class="dropdown-content">
+                    <a href="#">Карта</a>
+                    <a href="#">Язык</a>
+                    <a href="#">Манас</a>
+                    <a href="lichnost.html">Личности</a>
+                    <a href="#">О нас</a>
+                </div>
+            </div>
+
+            <a href="#structure-main" class="center-link">Строение юрты</a>
+
+            <div class="dropdown">
+                <button class="dropbtn">Духовный</button>
+                <div class="dropdown-content">
+                    <a href="#">Традиции</a>
+                    <a href="#">Литература</a>
+                    <a href="instrumrnt.html">Музыка</a>
+                    <a href="#">ИЗО</a>
+                    <a href="#">Киноматограф</a>
+                </div>
+            </div>
+        </div>
+
+        
+    </header>
+
+    <main class="page-container">
+        <h1>Юрта: Традиционное жилище кочевников</h1> <img src="images/yourt.jpg" alt="Изображение юрты" class="main-yurt-image">
+
+        <section id="structure-main">
+            <h2>Строение юрты</h2>
+            <div class="structure-part">
+                <h3>Каркас</h3>
+                <div class="image-placeholder" id="karkas"></div>
+                <ol>
+                    <li><strong>Кереге:</strong> Решётчатые складные стенки, изготовленные из деревянных реек, которые могут быть закреплены тесьмой из сыромятной кожи.</li>
+                    <li><strong>Уук:</strong> Жерди, составляющие купол юрты.</li>
+                    <li><strong>Тундук:</strong> Круг на вершине купола, скрепляющий жерди и служащий как потолочное окно и дымоход.</li>
+                    <li><strong>Ергенек:</strong> Дверца входа в юрту.</li>
+                </ol>
+            </div>
+            <div class="structure-part" id="structure-covering">
+                <h3>Покрытие</h3>
+                <div class="image-placeholder" id="cover"></div>
+                <p>Традиционно покрытие юрты изготавливается из войлока, сделанного из овечьей шерсти. Войлок обладает отличными теплоизоляционными свойствами, что делает юрту пригодной для круглогодичного проживания.</p>
+            </div>
+            <div class="structure-part">
+                <h3>Интерьер юрты</h3>
+                <div class="image-placeholder" id="inter"></div>
+                <p>Изнутри юрта делится на две половины: на мужскую (ближе к двери) и на женскую. На мужской части находится постель хозяев, развешивается оружие мужчины, конская упряжь, талисманы. На женской (девичьей) хранится постель невесты (дочери хозяина). К двери находится посудный шкаф, ступа для взбивания кумыса — символ достатка.</p>
+            </div>
+        </section>
+
+        <section id="yurt-assembly-video"> <h2>Сборка юрты</h2>
+            <div class="video-container">
+                <iframe
+                    src="https://www.youtube.com/embed/HCmXujpPnXM?si=b4yhVCNG7KK33Vwg"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+       
+
+    </main>
+
+    <footer>
+        © 2025 Информация о юрте
+    </footer>
+</body>
+</html>

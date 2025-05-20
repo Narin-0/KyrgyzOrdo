@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Кыргызские народные инструменты</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f7f4ef;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      header {
+        background-color: #1a3e2f;
+        color: rgb(255, 255, 255);
+        padding: 1rem 0.5rem;
+        text-align: center;
+      }
+
+      .nav-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      .nav-tabs {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        padding: 0;
+        margin: 0;
+        flex-wrap: wrap;
+      }
+
+      .nav-tabs li a {
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+        padding: 0.4rem 0.6rem;
+        border-radius: 5px;
+        transition: background-color 0.2s ease;
+      }
+
+      .nav-tabs li a:hover {
+        background-color: #152f24;
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #1a3e2f;
+        min-width: 120px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        right: 0;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .dropdown-content a {
+        color: #2e4234;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #f4f4f4;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .instrument {
+        background: #1a3e2f;
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        color: white;
+      }
+
+      .instrument img {
+        width: 100%;
+        border-radius: 10px;
+      }
+
+      h2 {
+        margin-top: 0.5rem;
+        color: #f9dba0;
+      }
+
+      .section-title {
+        margin-top: 1rem;
+        font-weight: bold;
+        color: #f4f4f4;
+      }
+
+      button.open-modal {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background-color: #f4c762;
+        color: #2d1d0f;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 10;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      .modal-content {
+        background-color: white;
+        margin: 10% auto;
+        padding: 0;
+        border-radius: 10px;
+        max-width: 90%;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .modal-content img {
+        width: 100%;
+        border-radius: 10px;
+        display: block;
+      }
+
+      .close {
+        float: right;
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        color: #8b5e3c;
+        margin: 0.5rem;
+      }
+
+      @media (min-width: 600px) {
+        .instrument {
+          max-width: 500px;
+          margin: 1rem auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav-title">Кыргызские народные инструменты</div>
+      <ul class="nav-tabs">
+        <li class="dropdown">
+          <a href="#">Научный</a>
+          <div class="dropdown-content">
+            <a href="#">Карта</a>
+            <a href="#">Язык</a>
+            <a href="#">Манас</a>
+            <a href="lichnost.html">Личности</a>
+          </div>
+        </li>
+        <li><a href="yourt.html">Строение юрты</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Духовный</a>
+          <div class="dropdown-content">
+            <a href="#">Традиция</a>
+            <a href="#">Литература</a>
+            <a href="instrumrnt.html">Музыка</a>
+            <a href="#">ИЗО</a>
+            <a href="#">Киноматограф</a>
+          </div>
+        </li>
+      </ul>
+    </header>
+
+    <div id="instruments"></div>
+    <div id="modals"></div>
+
+    <script>
+      const instruments = [
+        {
+          id: "komuz",
+          name: "Комуз",
+          description:
+            "Трёхструнный щипковый инструмент, символ кыргызской музыкальной культуры.",
+          materials: "Дерево (абрикос), три струны из нейлона или кишки.",
+          performers: "Токомбай Сатылганов, Сапар Асанов",
+          image:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv5VkkdDDsxCv6M35RbFhiY6YRydItnnhc2A&s",
+          structure: "https://sputnik.kg/images/07e7/05/1f/1075823781.png",
+        },
+        {
+          id: "temir",
+          name: "Темир-комуз",
+          description:
+            "Металлический варган, издающий вибрации при игре ртом и пальцами.",
+          materials: "Железо или сталь, язычковая форма.",
+          performers: "Нурбек Усын уулу, Айгүл Декеева",
+          image:
+            "https://www.ta-musica.ru/sites/default/files/imagecache/product_full/kyrgyz-komuz1.jpg",
+          structure:
+            "https://tyup.net/uploads/music/kyrg-muz-aspap/temir-ooz-komuz.jpg",
+        },
+        {
+          id: "kyiak",
+          name: "Кыл-кыяк",
+          description:
+            "Смычковый инструмент с двумя струнами, используется в эпических произведениях.",
+          materials: "Корпус — дерево, струны и смычок — из конского волоса.",
+          performers: "Жапар Абыкеев, Алымкулов Урмат",
+          image:
+            "https://upload.wikimedia.org/wikipedia/commons/2/23/Stamps_of_Kyrgyzstan%2C_2011-36.jpg",
+          structure:
+            "https://tyup.net/uploads/music/kyrg-muz-aspap/kyl-kyiak.jpg",
+        },
+        {
+          id: "chopo",
+          name: "Чопо-чор",
+          description:
+            "Глиняная флейта, часто используется в детских играх и обрядах.",
+          materials: "Обожжённая глина, 3–6 отверстий.",
+          performers: "Используется в народных ансамблях и школах искусств.",
+          image:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTVlXtoXXDMJDHQNKuPW7nhhPPOahIA1SlyVdloTtgS8t_-FQu-3iuxz9a8oq-JOjkT18&usqp=CAU",
+          structure:
+            "https://tyup.net/uploads/music/chopo-choor/chopo-choor.jpg",
+        },
+        {
+          id: "dool",
+          name: "Доол",
+          description:
+            "Большой барабан, используется в обрядах, шествиях и праздниках.",
+          materials: "Деревянный корпус, кожа (овечья или козья).",
+          performers: "Ансамбли «Озон», «Ак-Марал»",
+          image:
+            "https://historymuseum.kg/wp-content/uploads/2023/10/dool-zhygach-metall-teri-xix-k.jpg",
+          structure:
+            "https://sdmntprukwest.oaiusercontent.com/files/00000000-2c38-6243-b43b-1550f350e0fd/raw?se=2025-05-20T18%3A16%3A21Z&sp=r&sv=2024-08-04&sr=b&scid=ccc841d5-faf0-5cb9-b037-2d487eb9cbee&skoid=0a4a0f0c-99ac-4752-9d87-cfac036fa93f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-20T04%3A52%3A40Z&ske=2025-05-21T04%3A52%3A40Z&sks=b&skv=2024-08-04&sig=HXvJpeatY5heVoi0TDxXMN97MCgKRjc04A%2BZSlvQvig%3D",
+        },
+      ];
+
+      const instrumentsContainer = document.getElementById("instruments");
+      const modalsContainer = document.getElementById("modals");
+
+      instruments.forEach((item) => {
+        instrumentsContainer.innerHTML += `
+          <section class="instrument">
+            <img src="${item.image}" alt="${item.name}" />
+            <h2>${item.name}</h2>
+            <p>${item.description}</p>
+            <p class="section-title">Состав и материал:</p>
+            <p>${item.materials}</p>
+            <p class="section-title">Известные исполнители:</p>
+            <p>${item.performers}</p>
+            <button class="open-modal" onclick="openModal('${item.id}')">Строение</button>
+          </section>
+        `;
+
+        modalsContainer.innerHTML += `
+          <div id="modal-${item.id}" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('${item.id}')">&times;</span>
+              <img src="${item.structure}" alt="${item.name} - строение" />
+            </div>
+          </div>
+        `;
+      });
+
+      function openModal(id) {
+        document.getElementById("modal-" + id).style.display = "block";
+      }
+
+      function closeModal(id) {
+        document.getElementById("modal-" + id).style.display = "none";
+      }
+
+      window.onclick = function (event) {
+        const modals = document.querySelectorAll(".modal");
+        modals.forEach((modal) => {
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+      };
+    </script>
+  </body>
+</html>
