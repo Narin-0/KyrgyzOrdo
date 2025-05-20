@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="images/20231228015804!Kyrgyzstan_flag_tunduk.svg.png" type="image/x-icon">
+  <title>Исторический путь</title>
+  <style>
+      * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* Хидер */
+        .header {
+            background-color: #936B4A;
+            color: white;
+            padding: 15px 0;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Выпадающие меню */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .dropbtn:hover {
+            background-color: #623B24;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 2000;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #e0e0e0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Центральная ссылка */
+        .center-link {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .center-link:hover {
+            background-color: #623B24;
+        }
+
+    .event {
+      position: absolute;
+      width: 380px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 15px;
+      border-radius: 0px 30px 30px 30px;
+      border: 1px solid #333;
+      z-index: 100;
+    }
+    .dot {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: red;
+      border-radius: 50%;
+      border: 2px solid white;
+      display: block;
+      z-index: 100;
+    }
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+    .dot:hover{
+        cursor: pointer;
+    }
+    #t1{display: none;}
+    #t2{display: none;}
+    #t3{display: none; border-radius: 30px 30px 30px 0px;}
+    #t4{display: none; border-radius: 30px 30px 30px 0px;}
+    #t5{display: none; border-radius: 30px 0px 30px 30px;}
+    #t6{display: none; border-radius: 30px 30px 0px 30px;}
+    #t7{display: none; border-radius: 30px 30px 0px 30px;}
+
+    #O_O{display: none;}
+
+  </style>
+</head>
+<body>
+    <!-- Хидер с меню -->
+    <header class="header">
+      <div class="container">
+          <!-- Левое меню: Научный -->
+          <div class="dropdown">
+              <button class="dropbtn">Научный</button>
+              <div class="dropdown-content">
+                  <a href="geography.html">Карта</a>
+                  <a href="#">Язык</a>
+                  <a href="#">Манас</a>
+                  <a href="lichnost.html">Личности</a>
+                  <a href="#">О нас</a>
+              </div>
+          </div>
+
+          <!-- Центральная ссылка -->
+          <a href="yourt.html" class="center-link">Строение юрты</a>
+
+          <!-- Правое меню: Духовный -->
+          <div class="dropdown">
+              <button class="dropbtn">Духовный</button>
+              <div class="dropdown-content">
+                  <a href="#">Традиции</a>
+                  <a href="#">Литература</a>
+                  <a href="instrumrnt.html">Музыка</a>
+                  <a href="#">ИЗО</a>
+                  <a href="#">Киноматограф</a>
+              </div>
+          </div>
+      </div>
+  </header>
+      
+    <div class="map-container"><img src="images/img2.jpg" alt="" style="position: relative; width: 100%;">
+    <svg width="100%" height="100%">
+      <path d="
+        M 200 170
+        Q 250 270, 250 470
+        T 350 370
+        Q 400 320, 450 420
+        T 600 420
+        Q 800 270, 650 470
+        T 1000 670
+      " stroke="#b22222" stroke-width="5" fill="none" stroke-dasharray="14 12" />
+    </svg>
+
+    <!-- Dots -->
+    <button class="dot" onclick="d_d()" style="top: 155px; left: 180px;"></button><h1 style="position: absolute; display: block; top: 150px;left: 35px; color:#FF0000 ;">Нажми⮕</h1>
+    <div class="dot" onclick="d_d1()" style="top: 400px; left: 230px;"></div>
+    <div class="dot" onclick="d_d2()" style="top: 340px; left: 360px;"></div>
+    <div class="dot" onclick="d_d3()" style="top: 446px; left: 500px;"></div>
+    <div class="dot" onclick="d_d4()" style="top: 340px; left: 695px;"></div>
+    <div class="dot" onclick="d_d5()" style="top:615px; left: 685px;"></div>
+    <div class="dot" onclick="d_d6()" style="top: 645px; left: 870px;"></div>
+
+
+    <div style="position: absolute; display: block; top:140px; left: 200px; width: 210px; height: 135px;"><img src="images/png.png" alt="" style="width: 210px;height: 135px;"></div>
+    
+    <div style="position: absolute; display: block; top:350px; left: 30px; width: 210px; height: 135px;"><img src="images/png1.png" alt="" style="width: 210px;height: 135px; opacity: 0.9;"></div>
+
+    <div style="position: absolute; display: block; top:170px; left: 450px; width: 230px; height: 155px;"><img src="images/png2.png" alt="" style="width: 230px;height: 155px;"></div>
+
+    <div style="position: absolute; display: block; top:230px; left: 750px; width: 210px; height: 135px;"><img src="images/png3.png" alt="" style="width: 160px;height: 145px; opacity: 0.8;"></div>
+
+    <div style="position: absolute; display: block; top:530px; left: 480px; width: 210px; height: 135px;"><img src="images/png4.png" alt="" style="width: 145px;height: 170px; opacity: 0.9;"></div>
+
+    <div style="position: absolute; display: block; top:450px; left: 750px; width: 210px; height: 135px;"><img src="images/png5.png" alt="" style="width: 170px;height: 155px;"></div>
+
+    <!-- Events -->
+    <div class="event" id="t1" style="top: 185px; left: 210px;">
+      <strong>Енисей (Южная Сибирь)</strong><br>
+      Период: До V–VI вв. н.э.<br>
+      Статус: Племя (Енисейские кыргызы)<br>
+      Причина Переселение: Этническое формирование в родных землях<br>
+      Яркое событие в эти года: Первые упоминания в китайских летописях как «Гэгунь»
+    </div>
+    <div class="event" id="t2" style="top: 430px; left: 260px;">
+      <strong>Южная Сибирь, Минусинская котловина</strong><br>
+      Период: VI–X вв.<br>
+      Статус: Кыргызский каганат<br>
+      Причина Переселение: Освобождение от тюркского влияния<br>
+      Яркое событие в эти года: Разгром Уйгурского каганата в 840 г.
+    </div>
+    <div class="event" id="t3" style="top: 170px; left: 390px;">
+      <strong>Восточный Тянь-Шань (Иссык-Куль, Нарын)</strong><br>
+      Период: X–XIII вв.<br>
+      Статус: Племена (деконструкция каганата)<br>
+      Причина Переселение: Давление киданей и монголов<br>
+      Яркое событие в эти года: Перемещение центра этнической группы в Тянь-Шань
+    </div>
+    <div class="event" id="t4" style="top: 276px; left: 530px;">
+      <strong>Южный Тянь-Шань и Фергана</strong><br>
+      Период: XIII–XIV вв.<br>
+      Статус: В составе Монгольской империи<br>
+      Причина Переселение: Переселение в рамках улусов Чингисхана<br>
+      Яркое событие в эти года: Вхождение в состав Чагатайского улуса
+    </div>
+    <div class="event" id="t5" style="top: 370px; left: 325px;">
+      <strong>Талас, Чуй, Иссык-Куль, Нарын</strong><br>
+      Период: XV–XVIII вв.<br>
+      Статус: Племенные союзы<br>
+      Причина Переселение: Угрозы со стороны жунгаров<br>
+      Яркое событие в эти года: Формирование крупных родов: бугу, саяк, солто и др.
+    </div>
+    <div class="event" id="t6" style="top:445px; left: 315px;">
+      <strong>Горные районы Кыргызстана</strong><br>
+      Период: XVIII–XIX вв.<br>
+      Статус: Полунезависимые родовые общины<br>
+      Причина Переселение: Бегство от гнёта Кокандского ханства<br>
+      Яркое событие в эти года: Сопротивление кокандской экспансии
+    </div>
+    <div class="event" id="t7" style="top: 455px; left: 500px;">
+      <strong>Территория Кыргызской ССР (современный Кыргызстан)</strong><br>
+      Период: XX в. (после 1917)<br>
+      Статус: Республика в составе СССР<br>
+      Причина Переселение: Советская политика оседания и национализации<br>
+      Яркое событие в эти года: Образование Кыргызской ССР в 1936 году
+    </div>
+
+  <script>
+    function d_d() {
+      const block = document.getElementById("t1");
+      block.style.display = block.style.display === "none" ? "block" : "none";
+    }
+
+    function d_d1() {
+      const block = document.getElementById("t2");
+      block.style.display = block.style.display === "none" ? "block" : "none";
+    }
+
+    function d_d2() {
+      const block = document.getElementById("t3");
+      block.style.display = block.style.display === "none" ? "block" : "none";
+    }
+
+    function d_d3() {
+      const block = document.getElementById("t4");
+      block.style.display = block.style.display === "none" ? "block" : "none";
+    }
+
+    function d_d4() {
+      const block = document.getElementById("t5");
+      block.style.display = block.style.display === "none" ? "block" : "none";
+    }
+
+    function d_d5() {
+      const block = document.getElementById("t6");
+      block.style.display = block.style.display === "none" ? "block" : "none";
+    }
+
+    function d_d6() {
+      const block = document.getElementById("t7");
+      block.style.display = block.style.display === "none" ? "block" : "none";
+    }
+  </script>
+
+</body>
+</html>
