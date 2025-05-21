@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="icon" href="images/20231228015804!Kyrgyzstan_flag_tunduk.svg.png" type="image/x-icon">
+  <title>Эпос Манас</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      padding-top: 56px; /* Компенсация для фиксированного хидера */
+      overflow-x: hidden;
+    }
+
+    /* Фиксированный верхний хидер */
+    .top-header {
+      background-color: #1a3e2f;
+      color: white;
+      padding: 12px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+
+    /* Выпадающие меню */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background-color: transparent;
+      color: white;
+      padding: 8px 12px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+      white-space: nowrap;
+    }
+
+    .dropbtn:hover {
+      background-color: #2a5d46;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1;
+      border-radius: 4px;
+      left: 0;
+      right: auto;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 10px 14px;
+      text-decoration: none;
+      display: block;
+      transition: background-color 0.3s;
+      font-size: 13px;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #e0e0e0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Центральная ссылка */
+    .center-link {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+      white-space: nowrap;
+      margin: 0 5px;
+    }
+
+    .center-link:hover {
+      background-color: #2a5d46;
+    }
+
+    /* Основной контент */
+    .main-content {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+
+    /* Второй хидер (не фиксированный) */
+    header.primary-header {
+      background: linear-gradient(135deg, #2B474B 0%, #3c6064 100%);
+      color: white;
+      padding: 1rem 0.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-top: 0;
+    }
+
+    header.primary-header h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header.primary-header p {
+      font-size: 0.9rem;
+    }
+
+    header.secondary-header {
+      background: #3c6064;
+      color: #fff;
+      padding: 0.6rem;
+      text-align: center;
+      font-size: 0.85rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* Вкладочная навигация */
+    nav.tab-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.3rem;
+      flex-wrap: nowrap;
+      background: #1f2f30;
+      padding: 0.4rem;
+      position: sticky;
+      top: 56px;
+      z-index: 999;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    nav.tab-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    nav.tab-nav button {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      padding: 0.5rem 0.7rem;
+      color: white;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+      border-radius: 16px;
+      flex: 0 0 auto;
+      min-width: 80px;
+      white-space: nowrap;
+    }
+
+    nav.tab-nav button:hover,
+    nav.tab-nav button.active {
+      background: #d4af37;
+      color: #1f2f30;
+      font-weight: 600;
+    }
+
+    /* Секции контента */
+    .section-container {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .section {
+      display: none;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    h2 {
+      color: #2B474B;
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+      font-size: 1.3rem;
+      position: relative;
+      padding-bottom: 0.3rem;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: #d4af37;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin: 0.8rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .tab {
+      background: #d4af37;
+      color: #1f2f30;
+      border: none;
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+      border-radius: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      margin: 1.2rem auto 0;
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 200px;
+    }
+
+    .tab:hover {
+      background: #c9a227;
+      transform: translateY(-2px);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    }
+
+    .fact-box {
+      background: #f8f4e5;
+      border-left: 3px solid #d4af37;
+      padding: 0.8rem;
+      margin: 1rem 0;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .fact-box h3 {
+      color: #2B474B;
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+    }
+
+    .character-card {
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin: 1rem 0;
+      transition: transform 0.3s ease;
+    }
+
+    .character-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .character-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .character-info {
+      padding: 0.8rem;
+    }
+
+    .character-info h3 {
+      color: #2B474B;
+      margin-bottom: 0.4rem;
+      font-size: 1.1rem;
+    }
+
+    .character-info p {
+      font-size: 0.85rem;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 100%;
+      margin: 1.5rem 0;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      background-color: #d4af37;
+      top: 0;
+      bottom: 0;
+      left: 15px;
+    }
+
+    .timeline-item {
+      padding: 0 0 0 40px;
+      position: relative;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: #2B474B;
+      border: 3px solid #d4af37;
+      border-radius: 50%;
+      top: 10px;
+      left: 8px;
+      z-index: 1;
+    }
+
+    .timeline-content {
+      padding: 0.8rem;
+      background-color: white;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .timeline-date {
+      font-weight: bold;
+      color: #d4af37;
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .map-container {
+      margin: 1.5rem 0;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .map-container img {
+      width: 100%;
+      height: auto;
+    }
+
+    .floating-icon {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      width: 44px;
+      height: 44px;
+      background: #d4af37;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1.3rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+
+    .section {
+  overflow: hidden; /* Предотвращает "вытекание" контента */
+}
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Адаптация для планшетов */
+    @media (min-width: 480px) {
+      .top-header {
+        padding: 12px 0;
+      }
+      
+      .dropbtn, .center-link {
+        padding: 8px 14px;
+        font-size: 14px;
+      }
+      
+      .hero-image {
+        max-height: 250px;
+      }
+      
+      .character-image {
+        height: 220px;
+      }
+      
+      nav.tab-nav button {
+        padding: 0.6rem 0.9rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    /* Адаптация для десктопов */
+    @media (min-width: 768px) {
+      body {
+        padding-top: 60px;
+      }
+      
+      .top-header {
+        padding: 15px 0;
+      }
+      
+      .container {
+        padding: 0 20px;
+      }
+      
+      .dropbtn, .center-link {
+        padding: 10px 18px;
+        font-size: 16px;
+      }
+      
+      nav.tab-nav {
+        top: 60px;
+      }
+      
+      .main-content {
+        padding: 0 15px;
+      }
+      
+      .section {
+        padding: 1.5rem;
+        margin: 0.8rem 0;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+      
+      .hero-image {
+        max-height: 350px;
+      }
+      
+      .character-image {
+        height: 280px;
+      }
+      
+      .timeline::after {
+        left: 50%;
+      }
+      
+      .timeline-item {
+        width: 50%;
+        padding: 10px 40px;
+      }
+      
+      .timeline-item:nth-child(odd) {
+        left: 0;
+      }
+      
+      .timeline-item:nth-child(even) {
+        left: 50%;
+      }
+      
+      .timeline-item::after {
+        left: -8px;
+      }
+      
+      .timeline-item:nth-child(even)::after {
+        left: -8px;
+      }
+    }
+
+    /* Отключение анимаций для устройств с prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Фиксированный верхний хидер -->
+  <header class="top-header">
+    <div class="container">
+      <div class="dropdown">
+        <button class="dropbtn">Научный</button>
+        <div class="dropdown-content">
+          <a href="geography.html">Карта</a>
+          <a href="#">Язык</a>
+          <a href="manas2.html">Манас</a>
+          <a href="lichnost.html">Личности</a>
+          <a href="#">О нас</a>
+        </div>
+      </div>
+
+      <a href="yourt.html" class="center-link">Строение юрты</a>
+
+      <div class="dropdown">
+        <button class="dropbtn">Духовный</button>
+        <div class="dropdown-content">
+          <a href="#">Традиции</a>
+          <a href="">Литература</a>
+          <a href="instrumrnt.html">Музыка</a>
+          <a href="#">ИЗО</a>
+          <a href="cinema.html">Кинематограф</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Основное содержимое -->
+  <div class="main-content">
+    <!-- Второй хидер -->
+    <header class="primary-header">
+      <h1 class="animate__animated animate__fadeInDown">Эпос Манас</h1>
+      <p class="animate__animated animate__fadeInUp animate__delay-1s">Три великие части: Манас, Семетей и Сейтек</p>
+    </header>
+
+    <!-- Подзаголовок -->
+    <header class="secondary-header animate__animated animate__fadeIn animate__delay-1s">
+      <p>Добро пожаловать в мир кыргызского героического эпоса</p>
+    </header>
+
+    <!-- Вкладочная навигация -->
+    <nav class="tab-nav">
+      <button class="active" data-target="manas">Манас</button>
+      <button data-target="semetey">Семетей</button>
+      <button data-target="seitek">Сейтек</button>
+    </nav>
+
+    <!-- Контент секций -->
+    <div class="section-container">
+      <section id="manas" class="section active">
+        <h2 class="animate__animated animate__fadeIn">Манас</h2>
+        <img src="images/unnamed (15).png" alt="Манас" class="hero-image animate__animated animate__fadeIn">
+        <p>Манас — центральный герой одноименного кыргызского эпоса, объединивший разрозненные племена в единый народ. Его имя стало символом мужества, мудрости и справедливости.</p>
+        
+        <div class="fact-box animate__animated animate__fadeInUp">
+          <h3>Интересный факт</h3>
+          <p>Эпос "Манас" включен в список шедевров устного и нематериального культурного наследия человечества ЮНЕСКО и является самым длинным эпосом в мире — его полная версия содержит более 500 тысяч строк.</p>
+        </div>
+        
+        <div class="character-card animate__animated animate__fadeInLeft">
+          <iframe width="100%" height="250" src="https://www.youtube.com/embed/OirUwFnXvzI?si=83KsZDEAG2aC9mIs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="character-info">
+            <h3>Манас</h3>
+            <p>Легендарный герой, объединитель кыргызских племен. С детства проявил необыкновенную силу и храбрость. Его имя означает "вечный", "бессмертный".</p>
+          </div>
+        </div>
+        
+        <div class="character-card animate__animated animate__fadeInUp">
+          <img src="images/Снимок экрана 2025-05-19 005218.png" alt="40 чоро" class="character-image">
+          <div class="character-info">
+            <h3>40 чоро</h3>
+            <p>Легендарные воины Манаса, представлявшие разные племена: нойгут, катаган, кыпчак и другие.</p>
+          </div>
+        </div>
+        
+        <div class="character-card animate__animated animate__fadeInRight">
+          <img src="images/Рисунок9.jpg" alt="Каныкей" class="character-image">
+          <div class="character-info">
+            <h3>Каныкей</h3>
+            <p>Мудрая жена Манаса, ставшая символом женской мудрости и преданности в эпосе.</p>
+          </div>
+        </div>
+
+        <h3>Исторический контекст</h3>
+
+        <div class="timeline">
+          <div class="timeline-item left animate__animated animate__fadeInLeft">
+            <div class="timeline-content">
+              <div class="timeline-date">Рождение</div>
+              <p>Манас родился в семье Жакыпа и Чыйырды после долгих лет ожидания наследника.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item right animate__animated animate__fadeInRight">
+            <div class="timeline-content">
+              <div class="timeline-date">Юность</div>
+              <p>В 12 лет Манас уже возглавил войско и одержал первую победу над врагами.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item left animate__animated animate__fadeInLeft">
+            <div class="timeline-content">
+              <div class="timeline-date">IX век</div>
+              <p>Манас объединяет разрозненные кыргызские племена и создает Кыргызский каганат</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item right animate__animated animate__fadeInRight">
+            <div class="timeline-content">
+              <div class="timeline-date">840 год</div>
+              <p>Кыргызы под предводительством Манаса разгромили Уйгурский каганат</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item left animate__animated animate__fadeInLeft">
+            <div class="timeline-content">
+              <div class="timeline-date">IX-X века</div>
+              <p>Расцвет Кыргызского каганата, территория от Енисея до Тянь-Шаня</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="map-container animate__animated animate__fadeIn">
+          <h3>Карта Кыргызского каганата</h3>
+          <img src="images/Map_of_kyrgyz_khaganate.jpg" alt="">
+        </div>
+        
+        <button class="tab animate__animated animate__fadeInUp" data-target="semetey">Читать о Семетее →</button>
+      </section>
+
+      <section id="semetey" class="section">
+        <h2 class="animate__animated animate__fadeIn">Семетей</h2>
+        <img src="images/unnamed (45).png" alt="Семетей" class="hero-image animate__animated animate__fadeIn">
+        <p>Семетей — сын Манаса и Каныкей, продолжатель дела своего отца. Его история — это путь от изгнанника до мстителя и правителя.</p>
+        
+        <div class="fact-box animate__animated animate__fadeInUp">
+          <h3>Интересный факт</h3>
+          <p>Когда Семетей подрос, он был в полном неведении о том, что Манас - его отец, Каныкей - мать, а Талас - его родина. В двенадцать лет он был буйным и дерзким мальчиком.</p>
+        </div>
+        
+        <div class="character-card animate__animated animate__fadeInRight">
+            <iframe width="100%" height="300" src="https://www.youtube.com/embed/mFoPm9clj1c?si=Ajs0g2Yty6O6VyqH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="character-info">
+            <h3>Семетей</h3>
+            <p>Сын Манаса, выросший в изгнании. Вернулся, чтобы отомстить за смерть отца и восстановить справедливость. Его имя означает "несокрушимый".</p>
+          </div>
+        </div>
+        
+        <div class="character-card animate__animated animate__fadeInUp">
+            <img src="images/1cae4b2a9e91fe4573ce134e356f05fb.png" alt="40 чоро" class="character-image">
+            <div class="character-info">
+              <h3>Бакай</h3>
+              <p>Верный соратник Манаса, ставший мудрым наставником Семетея. Бакай - один из немногих, кто знал правду о происхождении Семетея с самого начала</p>
+            </div>
+          </div>
+          
+          <div class="character-card animate__animated animate__fadeInRight">
+            <img src="images/bc53881aafd7725a0323f789a9ef4fae.png" alt="Каныкей" class="character-image">
+            <div class="character-info">
+              <h3>Айчурок</h3>
+              <p>Возлюбленная и жена Семетея. Дочь мудрого старца Тайтору.</p>
+            </div>
+          </div>
+
+          <div class="character-card animate__animated animate__fadeInRight">console.log(document.getElementById('seitek').innerHTML);
+            <img src="images/image.png" alt="Каныкей" class="character-image">
+            <div class="character-info">
+              <h3>Канчоро и Кулчоро</h3>
+              <p>Верные воины Семетея (чоро). Помогают Семетею в борьбе за справедливость.</p>
+            </div>
+          </div>
+
+        <div class="timeline">
+          <div class="timeline-item left animate__animated animate__fadeInLeft">
+            <div class="timeline-content">
+              <div class="timeline-date">Рождение</div>
+              <p>Родился после смерти Манаса, воспитывался матерью Каныкей втайне от врагов.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item right animate__animated animate__fadeInRight">
+              <div class="timeline-content">
+                <div class="timeline-date">7 лет</div>
+                <p>Впервые проявил богатырскую силу, победив в схватке с диким быком, чем привлек внимание врагов отца.</p>
+              </div>
+            </div>
+    
+            <div class="timeline-item left animate__animated animate__fadeInLeft">
+              <div class="timeline-content">
+                <div class="timeline-date">12 лет</div>
+                <p>Каныкей открыла ему правду о происхождении. Семетей поклялся отомстить за смерть отца.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item right animate__animated animate__fadeInRight">
+              <div class="timeline-content">
+                <div class="timeline-date">15 лет</div>
+                <p>Отправился в поход, чтобы собрать уцелевших соратников Манаса и вернуть родовые земли.</p>
+              </div>
+            </div>
+    
+            <div class="timeline-item left animate__animated animate__fadeInLeft">
+              <div class="timeline-content">
+                <div class="timeline-date">Зрелые годы</div>
+                <p>Восстановил ханство отца, женился на Айчурок, продолжил дело Манаса по объединению кыргызских племен.</p>
+              </div>
+            </div>
+
+          <div class="timeline-item right animate__animated animate__fadeInRight">
+            <div class="timeline-content">
+              <div class="timeline-date">Айчурок - жена Семетея</div>
+              <p>Дочь мудрого старца Тайтору, стала верной спутницей Семетея. Их любовь - одна из самых поэтичных линий эпоса. От этого брака родился Сейтек.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item left animate__animated animate__fadeInLeft">
+            <div class="timeline-content">
+              <div class="timeline-date">Наследие Семетея</div>
+              <p>Семетей не только отомстил за отца, но и сохранил его дело. Он воспитал достойного наследника - Сейтека, продолжившего традиции рода.</p>
+            </div>
+          </div>
+        </div>
+        
+        <button class="tab animate__animated animate__fadeInUp" data-target="seitek">Читать о Сейтеке →</button>  
+      </section>
+
+      
+
+      <section id="seitek" class="section">
+        <h2 class="animate__animated animate__fadeIn">Сейтек</h2>
+        <img src="images/85e5e64e25da1197a6d23d80e18feccb.jpg" alt="Сейтек" class="hero-image animate__animated animate__fadeIn">
+        <p>Сейтек — внук Манаса, сын Семетея и Айчурок. Его история завершает трилогию эпоса, показывая становление мудрого правителя.</p>
+        
+        <div class="fact-box animate__animated animate__fadeInUp">
+          <h3>Интересный факт</h3>
+          <p>Имя "Сейтек" означает "избранный", "достойный". В эпосе подчеркивается, что он унаследовал лучшие качества своего деда Манаса и отца Семетея, но при этом был более дипломатичным и мудрым правителем.</p>
+        </div>
+        
+        <div class="character-card animate__animated animate__fadeInLeft">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/42FigMYYdYU?si=PzOhpT3riVvY5S6o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="character-info">
+            <h3>Сейтек</h3>
+            <p>Внук Манаса, завершивший дело своих предков. Объединил народ не только силой, но и мудростью. Его правление стало эпохой мира и процветания.</p>
+          </div>
+        </div>
+        
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-date">Рождение</div>
+              <p>Родился в период междоусобиц после смерти Семетея.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-date">Юность</div>
+              <p>Воспитывался вдали от родины, как и его отец, но узнал о своем происхождении раньше.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <div class="timeline-date">Правление</div>
+              <p>Стал мудрым правителем, объединившим народ и установившим долгий мир.</p>
+            </div>
+          </div>
+        </div>
+        
+        <button class="tab animate__animated animate__fadeInUp" data-target="manas">Вернуться к Манасу →</button>  
+      </section>
+    </div>
+  </div>
+
+  <div class="floating-icon animate__animated animate__bounceIn animate__delay-2s" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    ↑
+  </div>
+
+  <script>
+    // Переключение между вкладками
+    document.querySelectorAll('.tab-nav button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Удаляем активный класс у всех кнопок
+        document.querySelectorAll('.tab-nav button').forEach(b => b.classList.remove('active'));
+        // Добавляем активный класс текущей кнопке
+        btn.classList.add('active');
+        
+        // Скрываем все разделы
+        document.querySelectorAll('.section').forEach(section => {
+          section.classList.remove('active');
+        });
+        
+        // Показываем выбранный раздел
+        const target = btn.getAttribute('data-target');
+        document.getElementById(target).classList.add('active');
+        
+        // Прокрутка к верху страницы
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Переключение по кнопкам внутри контента
+    document.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-target');
+        
+        // Удаляем активный класс у всех кнопок
+        document.querySelectorAll('.tab-nav button').forEach(b => b.classList.remove('active'));
+        // Добавляем активный класс нужной кнопке
+        document.querySelector(`.tab-nav button[data-target="${target}"]`).classList.add('active');
+        
+        // Скрываем все разделы
+        document.querySelectorAll('.section').forEach(section => {
+          section.classList.remove('active');
+        });
+        
+        // Показываем выбранный раздел
+        document.getElementById(target).classList.add('active');
+        
+        // Прокрутка к верху страницы
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Анимация элементов при прокрутке
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.character-card, .timeline-item, .fact-box');
+      
+      elements.forEach(el => {
+        const elPosition = el.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if(elPosition < screenPosition) {
+          el.classList.add('animate__animated');
+          
+          if(el.classList.contains('timeline-item')) {
+            if(el.classList.contains('left')) {
+              el.classList.add('animate__fadeInLeft');
+            } else {
+              el.classList.add('animate__fadeInRight');
+            }
+          } else if(el.classList.contains('character-card')) {
+            if(el.classList.contains('animate__fadeInLeft') || el.classList.contains('animate__fadeInRight')) {
+              // Уже анимировано
+            } else {
+              el.classList.add('animate__fadeInUp');
+            }
+          } else {
+            el.classList.add('animate__fadeInUp');
+          }
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+
+    // Отключение анимаций для устройств с prefers-reduced-motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('*').forEach(el => {
+        el.style.animation = 'none';
+        el.style.transition = 'none';
+      });
+    }
+
+    console.log(document.getElementById('seitek').innerHTML);
+  </script>
+</body>
+</html>
