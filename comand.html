@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наша команда</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Цветовая палитра (согласована с хидером) */
+        :root {
+            --header-bg: #1a3e2f;
+            --header-hover: #2a5d46;
+            --accent: #3a7d58;
+            --dark-bg: #0d1f17;
+            --card-bg: #142e24;
+            --text-light: #f0f0f0;
+            --text-muted: #a0b8ad;
+        }
+
+        /* Стили хидера */
+        .header {
+            background-color: var(--header-bg);
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .dropbtn:hover {
+            background-color: var(--header-hover);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #e0e0e0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .center-link {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .center-link:hover {
+            background-color: var(--header-hover);
+        }
+
+        .parallax-container {
+        min-height: 100vh;
+        overflow-x: hidden;
+        perspective: 10px;
+    }
+
+    .hero-section {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding-top: 70px; /* Важное изменение */
+        transform-style: preserve-3d;
+        z-index: -1;
+        background: linear-gradient(to bottom, var(--header-bg) 0%, var(--dark-bg) 100%);
+    }
+
+    body {
+        padding-top: 0; /* Убираем, так как компенсируем через hero-section */
+    }
+
+        /* Основные стили страницы */
+      
+
+        
+
+        .background {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            z-index: -1;
+            transform: translateZ(-10px) scale(2);
+            opacity: 0.7;
+            mix-blend-mode: multiply;
+        }
+
+        .title {
+            font-size: 5rem;
+            color: var(--text-light);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            transform: translateZ(-5px) scale(1.5);
+            letter-spacing: 2px;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        section {
+            background-color: var(--dark-bg);
+            padding: 5rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            width: 300px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(50px);
+            border: 1px solid rgba(58, 125, 88, 0.3);
+        }
+
+        .team-member.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent);
+        }
+
+        .member-photo {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.4s;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .team-member:hover .member-photo {
+            transform: scale(1.05);
+        }
+
+        .member-info {
+            padding: 1.5rem;
+        }
+
+        .member-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .member-role {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .member-desc {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-light);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3rem;
+            }
+            
+            section {
+                padding: 3rem 1rem;
+            }
+            
+            .team-member {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .header {
+                padding: 10px 0;
+            }
+            
+            .dropbtn, .center-link {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Хидер с меню -->
+    <header class="header">
+        <div class="container">
+            <div class="dropdown">
+                <button class="dropbtn">Научный</button>
+                <div class="dropdown-content">
+                    <a href="#">Карта</a>
+                    <a href="#">Язык</a>
+                    <a href="#">Манас</a>
+                    <a href="#">Личности</a>
+                    <a href="comand.html">О нас</a>
+                </div>
+            </div>
+
+            <a href="#" class="center-link">Строение юрты</a>
+
+            <div class="dropdown">
+                <button class="dropbtn">Духовный</button>
+                <div class="dropdown-content">
+                    <a href="#">Традиции</a>
+                    <a href="#">Литература</a>
+                    <a href="#">Музыка</a>
+                    <a href="#">ИЗО</a>
+                    <a href="#">Кинематограф</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="parallax-container">
+        <div class="hero-section">
+            <img src="images/4.png" alt="Фон команды" class="background">
+            <h1 class="title">Наша команда</h1>
+        </div>
+
+        <section>
+            <h2 class="section-title">Наша команда</h2>
+            
+            <div class="team-container">
+                <div class="team-member">
+                    <img src="images/рус.png" alt="Алексей Петров" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Жекшен Руслан</h3>
+                        <p class="member-role">Гроза района</p>
+                        <p class="member-desc">Снимался в фильме "Рэкетир". Рэкетир — грозный снаружи, но с душой куратора.
+                            Да, может надавить... но только ради общего блага. Его боятся халтурщики, уважают отличники и обожают те, кто вечно забывает про дедлайны — ведь он всегда напомнит.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="images/мен.png" alt="Елена Смирнова" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Уезбаев Медер</h3>
+                        <p class="member-role">генеральный секретарь</p>
+                        <p class="member-desc">Вечно занят, но всегда в контроле. Не просто староста — скорее генеральный секретарь группы. Распределяет задачи, устанавливает дедлайны, а его Google Календарь боится сам себя.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="images/иса.png" alt="Иван Иванов" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Назарбеков Иса</h3>
+                        <p class="member-role">Разбиватель сердец</p>
+                        <p class="member-desc">Разбивает не только сессии, но и сердца. На пары заходит как в модный показ: одногруппницы теряют дар речи, а одногруппники — самооценку. </p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="images/asd.png" alt="Ольга Козлова" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Мукатов Нарин</h3>
+                        <p class="member-role">(Чингисхан)</p>
+                        <p class="member-desc">Говорят, его предки завоевали полмира. Он скромно ограничился офисным холодильником. До сих пор собирает дань в виде печенек.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="images/image2.png" alt="Дмитрий Соколов" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Дмитрий Соколов</h3>
+                        <p class="member-role">Наполеон</p>
+                        <p class="member-desc">Его взгляд прожигает опоздания насквозь. Когда он говорит "срочно", часы сами переводят стрелки.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="images/сул.png" alt="Анна Морозова" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Джумабеков Султан</h3>
+                        <p class="member-role">"Cool guy"</p>
+                        <p class="member-desc">Его стиль настолько крут, что даже PowerPoint-презентации у него загружаются с эффектом fade-in. AirDrop сам просит у него файлы.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="images/ислам.png" alt="Ольга Козлова" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Замидинов Ислам</h3>
+                        <p class="member-role">Сигма</p>
+                        <p class="member-desc">Спокойствие как суперсила. Может объяснять одно и то же 5 раз с одинаковым выражением лица. Одногруппники подозревают, что он медитирует с открытыми глазами.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="images/photo_2025-05-21_10-55-19.png" alt="Горохов Дмитрий" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Шеримкулов Илгиз</h3>
+                        <p class="member-role">Футболист</p>
+                        <p class="member-desc">Документы летят в корзину с первого удара. Канцелярские мячи боятся его больше, чем дедлайны.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="images/макс.png" alt="Анна Морозова" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Стальмаков Максим</h3>
+                        <p class="member-role">Талантище</p>
+                        <p class="member-desc">На сцене — рок-звезда, на поле — машина. Утром забивает гол, днём играет на гитаре, а вечером — сердца. Его расписание плотнее, чем у декана, но он всё успевает.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="images/image3.png" alt="Ольга Козлова" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Торобеков Алиаскар</h3>
+                        <p class="member-role">Амбассадор</p>
+                        <p class="member-desc">Может договориться даже с офисным принтером. После его переговоров кофемашина начинает делать раф на халяву.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="images/алих.png" alt="Дмитрий Соколов" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Алихан</h3>
+                        <p class="member-role">Jumper</p>
+                        <p class="member-desc">Появляется в трех местах одновременно. Коллеги подозревают у него навыки телепортации. Никто не видел, как он входит в дверь - он просто внезапно есть.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="images/диана.png" alt="Анна Морозова" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Ахмедова Диана</h3>
+                        <p class="member-role">Генератор идей</p>
+                        <p class="member-desc">Ее мозговые штурмы оставляют ураганный след. После ее 'а давайте попробуем вот так' разработчики тихо плачут в уголке.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://avatars.mds.yandex.net/i?id=977cb8f0df07ef60fbf972cc309c0db5381903f4-4274925-images-thumbs&n=13" alt="Ольга Козлова" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Темирова Томирис</h3>
+                        <p class="member-role">Царица саков</p>
+                        <p class="member-desc">Царица саков — не просто прозвище, а стиль жизни. Сдала зачёт раньше, чем препод успел сказать “начнём”.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://avatars.mds.yandex.net/i?id=977cb8f0df07ef60fbf972cc309c0db5381903f4-4274925-images-thumbs&n=13" alt="Дмитрий Соколов" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Табылдиев Нурислам</h3>
+                        <p class="member-role">Шумахер</p>
+                        <p class="member-desc">Шумахер колледжа — его заметили только по шлейфу скорости.</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://avatars.mds.yandex.net/i?id=977cb8f0df07ef60fbf972cc309c0db5381903f4-4274925-images-thumbs&n=13" alt="Анна Морозова" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">Парпиева Наиля</h3>
+                        <p class="member-role">Тихоня</p>
+                        <p class="member-desc">Тихоня? Только по звуку — по мозгам она как цунами. Сидит спокойно, а потом задаёт один вопрос — и пара уходит в философский штопор.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Параллакс-эффект
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const parallaxSpeed = 0.3;
+            
+            const background = document.querySelector('.background');
+            if (background) {
+                background.style.transform = `translateZ(-10px) scale(${2 + scrolled * 0.0005})`;
+            }
+            
+            const title = document.querySelector('.title');
+            if (title) {
+                title.style.transform = `translateY(${scrolled * parallaxSpeed}px) translateZ(-5px) scale(${1.5 + scrolled * 0.0002})`;
+                title.style.opacity = `${1 - scrolled * 0.002}`;
+            }
+        });
+
+        // Анимация появления карточек
+        const animateTeamMembers = () => {
+            const teamMembers = document.querySelectorAll('.team-member');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 150);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            teamMembers.forEach(member => {
+                member.style.transition = 'all 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                observer.observe(member);
+            });
+        };
+
+        // Закрытие выпадающих меню при клике вне их области
+        document.addEventListener('click', (e) => {
+            if (!e.target.matches('.dropbtn')) {
+                const dropdowns = document.querySelectorAll('.dropdown-content');
+                dropdowns.forEach(dropdown => {
+                    dropdown.style.display = 'none';
+                });
+            }
+        });
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            animateTeamMembers();
+        });
+    </script>
+</body>
+</html>
